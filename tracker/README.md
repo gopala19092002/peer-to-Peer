@@ -1,0 +1,32 @@
+## Tracker 
+- Use sockets for Socket Programming.
+- Used Multi-threading.
+- Reads data from the client and act accordingly.
+- Saves everything in files to make it persistant.
+- Tracker takes care of all the backend information.
+- It has 3 classes namely user, group and files.
+- User class takes care of new user, whether he is logged in or not or logged out, at which socket he is logged in, and display that user.
+- Group class takes care of all the groups, its admin, pending request, accept and reject, remove member, what file it contains, and who all are the members of that group.
+- File class consists of file name, file size, and whether that file belongs to some user or not. If it is, then add it in the group.
+- We use unordered_map<string, class> to store all the information
+- create_user command store its info and credentials to the users map.
+- login checks the credentials and whether the user is previously logged in or not. If not, then, log in that user. It also describes all the files contained by that user.
+- Login system is taken care by a flag, where 1 signifies that the user is still logged in in the system.
+- logout simply logs out the user(ofcourse if it is logged in previously) and stop share all of its files at the immediate basis.
+- Client needs to create an account (userid and password) in order to be part of the network.
+- Client can create any number of groups(groupid should be different) and hence will be owner of those groups.
+- Client needs to be part of the group from which it wants to download the file
+- Client will send join request to join a group.
+- Owner Client Will Accept/Reject the request.
+- Whatever action we took, like join_group, leave_group, list_files, etc. all are stored in the map at that very instant.
+- After joining group , client can see list of all the shareable files in the group.
+- I have also handle the case when admin leaves the group. In that case, the first(or next in case of recusively admin left) person joined the group will become the admin.
+- If there is only one person in the group and he left, then group automatically deleted.
+- Only admin is allowed to accept the request and there is only 1 admin of a group.
+- User can check in which group he is currently in.
+- Client can share file in any group.
+- Client can send the download command to tracker with the group name and filename and tracker will send the details of the group members which are currently sharing that particular file.
+- After fetching the peer info from the tracker, client will communicate with peers about the portions of the file they contain and hence accordingly decide which part of data to take from which peer using peice selection algorithm.
+- As soon as a piece of file gets downloaded it should be available for sharing. When the peer downloads the file it becomes seeder.
+
+
